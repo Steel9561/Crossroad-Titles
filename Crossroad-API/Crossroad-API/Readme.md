@@ -1,6 +1,6 @@
 # Crossroad - Backend
 
-Find your favorite titels using your favorite movies search engine - Crossroad!
+Find your favorite titles using your favorite movies search engine - Crossroad!
 
 This is the backend portion of the project. This WebApi project interacts with the SQL Server database for titles that was provided. 
 
