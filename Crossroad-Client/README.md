@@ -1,6 +1,6 @@
 # Crossroad
 
-Find your favorite titels using your favorite movies search engine - Crossroad!
+Find your favorite titles using your favorite movies search engine - Crossroad!
 
 ## Development server
 
