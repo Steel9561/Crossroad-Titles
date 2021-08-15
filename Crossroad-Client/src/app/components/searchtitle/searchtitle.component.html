@@ -1,0 +1,41 @@
+<div class="row" style="margin-right:0px;">
+  <div class="column">
+  <div class="jumbotron">
+      <div id="containerSearch"><p id="headingMain">Crossroad: The titles you love to watch!</p>
+        <form>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" autocomplete="off" #searchChanged (keyup)="changeTitle(searchChanged.value)" class="form-control" placeholder="Enter movie title..." id="searchStr">                  
+              <div class="form-group">
+              <span class="input-group-btn">
+                <button (click)="searchTitles()" class="btn btn-primary"  id="btnSearchTitle" type="button">Go!</button>
+              </span>
+              </div>
+            </div>       
+          </div>      
+        </form>
+      </div>
+      <div *ngIf="this.moviesFound">
+        <a id="clearSearch" class="btn btn-primary" (click)="clearSearch()" type="button">Clear Search</a>  
+      </div>
+    </div>    
+  </div>
+</div>
+
+<div class="row" style="margin-right:0px;">
+  <div class="column">  
+    <div class="container" *ngIf="this.moviesFound">    
+      <div id="searchResults">Search Results:</div>
+        <ngb-carousel *ngIf="image">    
+            <ng-template ngbSlide *ngFor="let title of objectKeys">         
+                <div class="wrapper">            
+                        <img [src]="image" (click)="viewTitleDetails()" alt="Movie title image...">               
+                        <h5 id="movieTitle" class="centered">{{ title["titleName"] }}</h5>
+                        <p id="movieYearReleased" class="centeredBelow">Year Released: {{ title["releaseYear"] }} </p>                        
+                </div>     
+                <button class="btn btn-primary viewDetailsBtn" (click)="viewTitleDetails()" id="btnViewTitleDetails" type="button">Learn More...</button>                                
+            </ng-template>    
+        </ngb-carousel>
+    </div>  
+  </div>
+</div>

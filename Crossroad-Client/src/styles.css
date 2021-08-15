@@ -1,0 +1,52 @@
+body{    
+    background-color: lightgray;
+    background-image: url("./assets/images/Characters_Background.jpg");   
+    background-size: cover;
+    background-repeat: no-repeat;    
+    background-position: 25% 75%;
+    background-attachment: fixed;
+}
+
+ngb-carousel .wrapper {
+    position: relative;
+    width: 100%;
+    height: 530px;    
+    display: flex;    
+    justify-content: center;
+  }
+  
+  .carousel-control-next, .carousel-control-prev
+  {
+    height: 75%!important;
+    color: white!important;
+    font-weight: bold!important;
+    font-size: 30px!important;
+    opacity: 1!important;
+    align-items: bottom!important;
+    margin-left: 50px!important;
+    margin-right: 50px!important;    
+  }
+
+  ngb-carousel .wrapper>img:hover {
+      cursor: pointer;
+  }
+  
+  ngb-carousel .wrapper>img {
+    position: absolute;
+    display: flex;   
+    bottom: 150px;
+    width: 375px;
+    height: 400px;
+    text-align: center;        
+    align-items: middle!important;
+    justify-content: center;
+    vertical-align:middle;        
+    border: 2px solid;
+    box-shadow: 2px 2px 2px 2px brown;      
+  }
+
+  .sr-only{
+    position: relative;
+    height: 50px;
+    width: 150px;    
+  } 
