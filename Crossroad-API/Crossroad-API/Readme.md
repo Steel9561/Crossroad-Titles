@@ -33,16 +33,16 @@ All data returned from the end points is in JSON format ready to be consumed by 
 2. SearchByTitle
 3. GetTitleDetails
 
-The current functionality is limited to SearchByTitle (the only one currently in use by the Angular frontend). 
+Currently, only end points 2 and 3 are currently in use.
 
 The other 2 end points work but they were created for the purpose of future implementations. 
 
 For instance the **GetTitleDetails** end point will be useful for displaying the detailed information about a specific title. 
 
-![Lazy Loading All Info In One Single Call](https://github.com/Steel9561/Crossroad-Titles/blob/daa49735625a40f69ed2df4663569b1f25d64016/Crossroad-API/Crossroad-API/GetTitleDetails.JPG)
+![Lazy Loading All Info In One Single Call](https://github.com/Steel9561/Crossroad-Titles/blob/fa0d4bd65084c1ceb6bfe884a77fd1ffce09e20b/Crossroad-API/Crossroad-API/GetTitleDetails.JPG)
 
 This is because this end point will bring back all related records to a specific title (awards, other names, participants and genres). 
 
-For best performance, all the data for a specific title is returned in one single call using lazy loading. 
+For best performance, all the data for a specific title is returned using deferred execution LINQ queries.
 
 
