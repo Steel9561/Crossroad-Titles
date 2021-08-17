@@ -27,9 +27,11 @@ namespace Crossroad_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configure entity framework db context object to use correct connection string
             services.AddDbContext<CrossroadDBContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("Crossroad_Sql_Connection")));
             
+            //CORS configuration to allow all requests from Angular app
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAllOrigins",
@@ -55,6 +57,7 @@ namespace Crossroad_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            //Very important to add CORS here as well
             app.UseCors();
             app.UseAuthorization();
 

@@ -1,11 +1,79 @@
-<div class="row" style="margin-right:0px;">
-  <div class="column">
-  <div class="jumbotron">
+<ng-template #showMovieDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Movie Details</h4>   
+  </div>
+  <div class="modal-body">
+    <ngb-accordion [closeOthers]="true">
+      <ngb-panel id="static-5">
+        <ng-template ngbPanelTitle>
+          <span>&#9733; <b>Story Lines</b> &#9733;</span>
+        </ng-template>
+        <ng-template ngbPanelContent>     
+          <div *ngFor="let st of objectKeysDetailsStoryLines">
+                <h6>{{ st["type"] }}</h6>  
+                {{ st["description"] }} 
+                <br><br>
+          </div>  
+        </ng-template>
+      </ngb-panel>  
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelTitle>
+          <span>&#9733; <b>Genres</b> &#9733;</span>
+        </ng-template>
+        <ng-template ngbPanelContent>             
+          <div *ngFor="let gn of objectKeysDetailsGenres">
+                {{ gn["genre"]["name"] }} 
+          </div>  
+      </ng-template>
+    </ngb-panel>  
+    <ngb-panel id="static-2">
+      <ng-template ngbPanelTitle>
+        <span>&#9733; <b>Participants</b> &#9733;</span>
+      </ng-template>
+      <ng-template ngbPanelContent>   
+        <div id="participantsDiv">              
+          <div  *ngFor="let pr of objectKeysDetailsParticipants">
+                  {{ pr["participant"]["name"] }} 
+          </div>  
+       </div>
+  </ng-template>
+</ngb-panel>
+  <ngb-panel id="static-3">
+    <ng-template ngbPanelTitle>
+      <span>&#9733; <b>Other Names</b> &#9733;</span>
+    </ng-template>
+    <ng-template ngbPanelContent> 
+      <div *ngFor="let other of objectKeysDetailsOtherNames">
+            {{ other["titleName"] }} 
+      </div>  
+  </ng-template>
+</ngb-panel>
+<ngb-panel id="static-4">
+    <ng-template ngbPanelTitle>
+      <span>&#9733; <b>Awards</b> &#9733;</span>
+    </ng-template>
+    <ng-template ngbPanelContent> 
+    <h3>Awards</h3>
+        <div *ngFor="let award of objectKeysDetailsAwards">
+              {{ award["award1"] }} 
+        </div>   
+    </ng-template>
+  </ngb-panel>
+  </ngb-accordion>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<div class="row" id="divTop" style="margin-right:0px;">
+  <div class="column" id="searchContains">
+  <div class="jumbotron" id="mainSearchArea">
       <div id="containerSearch"><p id="headingMain">Crossroad: The titles you love to watch!</p>
         <form>
           <div class="form-group">
             <div class="input-group">
-              <input type="text" autocomplete="off" #searchChanged (keyup)="changeTitle(searchChanged.value)" class="form-control" placeholder="Enter movie title..." id="searchStr">                  
+              <input type="text" #searchInputBox autocomplete="off" #searchChanged (keyup)="changeTitle(searchChanged.value)" class="form-control" placeholder="Enter movie title..." id="searchStr">                  
               <div class="form-group">
               <span class="input-group-btn">
                 <button (click)="searchTitles()" class="btn btn-primary"  id="btnSearchTitle" type="button">Go!</button>
@@ -16,24 +84,23 @@
         </form>
       </div>
       <div *ngIf="this.moviesFound">
-        <a id="clearSearch" class="btn btn-primary" (click)="clearSearch()" type="button">Clear Search</a>  
+        <a id="clearSearch" class="btn btn-primary" (click)="clearSearch(searchInputBox)" type="button">Clear Search</a>  
       </div>
     </div>    
   </div>
 </div>
-
-<div class="row" style="margin-right:0px;">
+<div class="row" id="divBottom" style="margin-right:0px;">
   <div class="column">  
     <div class="container" *ngIf="this.moviesFound">    
-      <div id="searchResults">Search Results:</div>
+      <div id="searchResults" name="searchResults">Search Results:</div>
         <ngb-carousel *ngIf="image">    
             <ng-template ngbSlide *ngFor="let title of objectKeys">         
                 <div class="wrapper">            
-                        <img [src]="image" (click)="viewTitleDetails()" alt="Movie title image...">               
+                        <img [src]="image" alt="Movie title image...">               
                         <h5 id="movieTitle" class="centered">{{ title["titleName"] }}</h5>
                         <p id="movieYearReleased" class="centeredBelow">Year Released: {{ title["releaseYear"] }} </p>                        
                 </div>     
-                <button class="btn btn-primary viewDetailsBtn" (click)="viewTitleDetails()" id="btnViewTitleDetails" type="button">Learn More...</button>                                
+                <button class="btn btn-primary viewDetailsBtn" (click)='viewTitleDetails(showMovieDetails,title["titleId"],title["titleName"])' id="btnViewTitleDetails" type="button">Learn More...</button>                                
             </ng-template>    
         </ngb-carousel>
     </div>  

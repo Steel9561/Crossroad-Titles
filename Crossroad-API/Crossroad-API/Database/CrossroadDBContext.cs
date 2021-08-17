@@ -30,6 +30,15 @@ namespace Crossroad_API.Database
             modelBuilder.Entity<OtherName>()
                 .ToTable("OtherName", "dbo");
 
+            modelBuilder.Entity<Genre>()
+            .ToTable("Genre", "dbo");
+
+            modelBuilder.Entity<Participant>()
+                .ToTable("Participant", "dbo");
+
+            modelBuilder.Entity<StoryLine>()
+               .ToTable("StoryLine", "dbo");
+
             modelBuilder.Entity<TitleGenre>()
                 .ToTable("TitleGenre", "dbo");
 
@@ -44,8 +53,9 @@ namespace Crossroad_API.Database
             modelBuilder.Entity<Participant>()
                 .HasMany(e => e.TitleParticipants)
                 .WithOne(e => e.Participant)
-                .OnDelete(DeleteBehavior.SetNull);
-
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasForeignKey(s => s.ParticipantId);
+       
             modelBuilder.Entity<Title>()
                 .ToTable("Title", "dbo")
                 .HasMany(e => e.Awards)
@@ -69,6 +79,7 @@ namespace Crossroad_API.Database
                 .HasMany(e => e.TitleParticipants)
                 .WithOne(e => e.Title)
                 .OnDelete(DeleteBehavior.SetNull);
+           
         }
     }
 }
